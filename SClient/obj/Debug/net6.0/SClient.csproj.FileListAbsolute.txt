@@ -1,0 +1,12 @@
+E:\SClient\bin\Debug\net6.0\SClient.deps.json
+E:\SClient\bin\Debug\net6.0\SClient.dll
+E:\SClient\bin\Debug\net6.0\SClient.pdb
+E:\SClient\obj\Debug\net6.0\SClient.csproj.AssemblyReference.cache
+E:\SClient\obj\Debug\net6.0\SClient.GeneratedMSBuildEditorConfig.editorconfig
+E:\SClient\obj\Debug\net6.0\SClient.AssemblyInfoInputs.cache
+E:\SClient\obj\Debug\net6.0\SClient.AssemblyInfo.cs
+E:\SClient\obj\Debug\net6.0\SClient.csproj.CoreCompileInputs.cache
+E:\SClient\obj\Debug\net6.0\SClient.dll
+E:\SClient\obj\Debug\net6.0\refint\SClient.dll
+E:\SClient\obj\Debug\net6.0\SClient.pdb
+E:\SClient\obj\Debug\net6.0\ref\SClient.dll
