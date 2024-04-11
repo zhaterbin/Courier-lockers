@@ -10,7 +10,7 @@ namespace Courier_lockers.WPF
    public partial class Box:ObservableObject
     {
         [ObservableProperty]
-        int id;
+        string id;
         [ObservableProperty]
         bool isOccupied;
         [ObservableProperty]

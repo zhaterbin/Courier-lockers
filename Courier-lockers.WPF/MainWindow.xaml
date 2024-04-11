@@ -8,22 +8,22 @@
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    Width="800"
-    Height="450"
+    Width="1600"
+    Height="900"
     AllowsTransparency="True"
     Background="Transparent"
     BorderThickness="0"
     Icon="bean-botter.jpg"
     ResizeMode="NoResize"
     UseNoneWindowStyle="True"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Border
         BorderBrush="Black"
         BorderThickness="1"
         ClipToBounds="True"
-        CornerRadius="5"
-        MouseMove="Border_MouseMove">
+        CornerRadius="5">
         <Grid>
             <Image Source="bean-botter.jpg" Stretch="Fill">
                 <Image.Effect>
@@ -32,108 +32,184 @@
             </Image>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="160" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Black" BorderThickness="0,0,1,0">
                     <StackPanel VerticalAlignment="Center">
                         <Border
-                            Height="200"
-                            Margin="3,20"
+                            Height="400"
+                            Margin="10"
                             Background="WhiteSmoke"
                             BorderBrush="Black"
-                            BorderThickness="0.5"
+                            BorderThickness="1"
+                            ClipToBounds="True"
                             CornerRadius="5">
                             <Grid>
-                                <Image Source="bean-botter.jpg" Stretch="Fill">
-                                    <!--<Image.Effect>
-                                        <BlurEffect Radius="15" />
-                                    </Image.Effect>-->
-                                </Image>
-                                <Border Background="#33333333">
-                                    <UniformGrid
-                                        Margin="10"
-                                        Columns="2"
-                                        Rows="2">
-                                        <UniformGrid.Resources>
-                                            <Style BasedOn="{StaticResource MahApps.Styles.Button.Circle}" TargetType="Button">
-                                                <Setter Property="mah:ControlsHelper.CornerRadius" Value="20" />
-                                                <Setter Property="Margin" Value="5" />
-                                                <Setter Property="BorderThickness" Value="0" />
-                                            </Style>
-                                        </UniformGrid.Resources>
-                                        <Button Background="Aqua">
-                                            <DockPanel>
-                                                <TextBlock DockPanel.Dock="Bottom" Text="取快递" />
-                                                <iconPacks:PackIconTypicons
-                                                    Width="40"
-                                                    Height="40"
-                                                    Kind="Dropbox" />
-                                            </DockPanel>
-                                        </Button>
-                                        <Button Background="Yellow">
-                                            <DockPanel>
-                                                <TextBlock DockPanel.Dock="Bottom" Text="存快递" />
-                                                <iconPacks:PackIconModern
-                                                    Width="40"
-                                                    Height="40"
-                                                    Kind="Inbox" />
-                                            </DockPanel>
-                                        </Button>
-                                        <Button Background="SteelBlue">
-                                            <DockPanel>
-                                                <TextBlock DockPanel.Dock="Bottom" Text="寄快递" />
-                                                <iconPacks:PackIconFontAwesome
-                                                    Width="40"
-                                                    Height="40"
-                                                    Kind="ParachuteBoxSolid" />
-                                            </DockPanel>
-                                        </Button>
-                                        <Button Background="Orange">
-                                            <DockPanel>
-                                                <TextBlock DockPanel.Dock="Bottom" Text="管理员" />
-                                                <iconPacks:PackIconFontAwesome
-                                                    Width="40"
-                                                    Height="40"
-                                                    Kind="UserCircleSolid" />
-                                            </DockPanel>
-                                        </Button>
-                                    </UniformGrid>
+                                <Border CornerRadius="5">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="bean-botter.jpg" Stretch="Fill" />
+                                    </Border.Background>
                                 </Border>
+                                <mah:FlipView
+                                    IsBannerEnabled="False"
+                                    IsNavigationEnabled="False"
+                                    MouseHoverBorderEnabled="False"
+                                    SelectedIndex="1">
+                                    <Border Background="#33333333">
+                                        <UniformGrid
+                                            Margin="10"
+                                            Columns="2"
+                                            Rows="2">
+                                            <UniformGrid.Resources>
+                                                <Style BasedOn="{StaticResource MahApps.Styles.Button.Circle}" TargetType="Button">
+                                                    <Setter Property="mah:ControlsHelper.CornerRadius" Value="20" />
+                                                    <Setter Property="Margin" Value="5" />
+                                                    <Setter Property="BorderThickness" Value="0" />
+                                                </Style>
+                                            </UniformGrid.Resources>
+                                            <Button Background="Aqua">
+                                                <DockPanel>
+                                                    <TextBlock DockPanel.Dock="Bottom" Text="取快递" />
+                                                    <iconPacks:PackIconTypicons
+                                                        Width="40"
+                                                        Height="40"
+                                                        Kind="Dropbox" />
+                                                </DockPanel>
+                                            </Button>
+                                            <Button Background="Yellow">
+                                                <DockPanel>
+                                                    <TextBlock DockPanel.Dock="Bottom" Text="存快递" />
+                                                    <iconPacks:PackIconModern
+                                                        Width="40"
+                                                        Height="40"
+                                                        Kind="Inbox" />
+                                                </DockPanel>
+                                            </Button>
+                                            <Button Background="SteelBlue">
+                                                <DockPanel>
+                                                    <TextBlock DockPanel.Dock="Bottom" Text="寄快递" />
+                                                    <iconPacks:PackIconFontAwesome
+                                                        Width="40"
+                                                        Height="40"
+                                                        Kind="ParachuteBoxSolid" />
+                                                </DockPanel>
+                                            </Button>
+                                            <Button Background="Orange">
+                                                <DockPanel>
+                                                    <TextBlock DockPanel.Dock="Bottom" Text="管理员" />
+                                                    <iconPacks:PackIconFontAwesome
+                                                        Width="40"
+                                                        Height="40"
+                                                        Kind="UserCircleSolid" />
+                                                </DockPanel>
+                                            </Button>
+                                        </UniformGrid>
+                                    </Border>
+                                    <Border>
+                                        <Grid>
+                                            <Grid Opacity="{Binding Opacity}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="auto" />
+                                                </Grid.RowDefinitions>
+                                                <DockPanel>
+                                                    <Button
+                                                        Margin="3"
+                                                        mah:ControlsHelper.FocusBorderThickness="0"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        Content="{iconPacks:Fontisto Kind=AngleLeft}" />
+                                                    <TextBlock Margin="6" Text="选择快递柜" />
+                                                </DockPanel>
+                                                <Border Grid.Row="1">
+                                                    <DockPanel Margin="3" VerticalAlignment="Center">
+                                                        <TextBlock Foreground="Red" DockPanel.Dock="Bottom" Margin="3" TextAlignment="Center" Text="{Binding Error}" />
+                                                        <TextBlock VerticalAlignment="Center" Text="快递柜号：" />
+                                                        <Button
+                                                            Margin="3,0"
+                                                            Command="{Binding GetAreaCommand}"
+                                                            Content="{iconPacks:BootstrapIcons Kind=Search}"
+                                                            DockPanel.Dock="Right" />
+                                            
+                                                        <TextBox
+                                                            Background="#aaffffff"
+                                                            IsReadOnly="True"
+                                                            Text="{Binding Area}" />
+                                                    </DockPanel>
+                                                </Border>
+                                                <UniformGrid
+                                                    Grid.Row="2"
+                                                    Height="160"
+                                                    Margin="5"
+                                                    Columns="3"
+                                                    Rows="4">
+                                                    <UniformGrid.Resources>
+                                                        <Style BasedOn="{StaticResource MahApps.Styles.Button}" TargetType="Button">
+                                                            <Setter Property="Background" Value="#FF0D6F7D" />
+                                                            <Setter Property="Foreground" Value="WhiteSmoke" />
+                                                            <Setter Property="mah:ControlsHelper.CornerRadius" Value="0" />
+                                                        </Style>
+                                                    </UniformGrid.Resources>
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="7"
+                                                        Content="7" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="8"
+                                                        Content="8" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="9"
+                                                        Content="9" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="4"
+                                                        Content="4" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="5"
+                                                        Content="5" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="6"
+                                                        Content="6" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="1"
+                                                        Content="1" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="2"
+                                                        Content="2" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="3"
+                                                        Content="3" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="←"
+                                                        Content="←" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="0"
+                                                        Content="0" />
+                                                    <Button
+                                                        Command="{Binding KeyboardInputCommand}"
+                                                        CommandParameter="×"
+                                                        Content="×" />
+                                                </UniformGrid>
+
+                                            </Grid>
+                                            <mah:ProgressRing Grid.RowSpan="3" Visibility="{Binding PendingVisibility}" />
+                                        </Grid>
+                                    </Border>
+                                </mah:FlipView>
                             </Grid>
                         </Border>
-                        <Border
-                            HorizontalAlignment="Center"
-                            BorderBrush="Black"
-                            BorderThickness="1">
-                            <UniformGrid
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Columns="3"
-                                Rows="4">
-                                <UniformGrid.Resources>
-                                    <Style BasedOn="{StaticResource MahApps.Styles.Button}" TargetType="Button">
-                                        <Setter Property="Background" Value="Gray" />
-                                        <Setter Property="Foreground" Value="WhiteSmoke" />
-                                        <Setter Property="Height" Value="32" />
-                                        <Setter Property="Width" Value="32" />
-                                        <Setter Property="mah:ControlsHelper.CornerRadius" Value="0" />
-                                    </Style>
-                                </UniformGrid.Resources>
-                                <Button Content="7" />
-                                <Button Content="8" />
-                                <Button Content="9" />
-                                <Button Content="4" />
-                                <Button Content="5" />
-                                <Button Content="6" />
-                                <Button Content="1" />
-                                <Button Content="2" />
-                                <Button Content="3" />
-                                <Button Content="0" />
-                                <Button Content="确认" />
-                                <Button Content="取消" />
-                            </UniformGrid>
-                        </Border>
+
                     </StackPanel>
                 </Border>
                 <Grid Grid.Column="1">
@@ -156,7 +232,7 @@
                         ItemsSource="{Binding Boxes}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="15" Rows="10" />
+                                <UniformGrid Columns="{Binding Cols}" Rows="{Binding Rows}" />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                         <ListBox.ItemContainerStyle>

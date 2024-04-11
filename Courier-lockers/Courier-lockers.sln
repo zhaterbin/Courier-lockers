@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Schedule", "..\Schedule\Sch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redis", "..\Redis\Redis.csproj", "{AE16CDC6-8C4F-45B4-847B-B02EA8D50DFB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Courier-lockers.WPF", "..\Courier-lockers.WPF\Courier-lockers.WPF.csproj", "{353EC050-59A9-4CB1-9A5D-E66AAC129C9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,14 @@ Global
 		{97F870BB-9B1D-4E86-B597-14CDAC939481}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97F870BB-9B1D-4E86-B597-14CDAC939481}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97F870BB-9B1D-4E86-B597-14CDAC939481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE16CDC6-8C4F-45B4-847B-B02EA8D50DFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE16CDC6-8C4F-45B4-847B-B02EA8D50DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE16CDC6-8C4F-45B4-847B-B02EA8D50DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE16CDC6-8C4F-45B4-847B-B02EA8D50DFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{353EC050-59A9-4CB1-9A5D-E66AAC129C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{353EC050-59A9-4CB1-9A5D-E66AAC129C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{353EC050-59A9-4CB1-9A5D-E66AAC129C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{353EC050-59A9-4CB1-9A5D-E66AAC129C9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
