@@ -59,7 +59,7 @@ namespace Courier_lockers
                     options.CustomSchemaIds(type => type.FullName);
 
                     const string ApiVersion = "v1";
-                    const string ApiName = "ChrWmsAPI";
+                    const string ApiName = "API";
 
                     options.SwaggerDoc(ApiVersion, new OpenApiInfo()
                     {
@@ -71,7 +71,7 @@ namespace Courier_lockers
                     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                     // 启用xml注释. 该方法第二个参数启用控制器的注释，默认为false.
-                    options.IncludeXmlComments(xmlPath, true);
+                    //options.IncludeXmlComments(xmlPath, true);
 
                 });
                 #endregion
@@ -127,7 +127,7 @@ namespace Courier_lockers
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "ChrWmsAPI v1");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
             });
 
 

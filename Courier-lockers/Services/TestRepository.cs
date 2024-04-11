@@ -2,7 +2,6 @@
 using Courier_lockers.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-//using System.Data.Entity;
 using System.Diagnostics.Metrics;
 
 namespace Courier_lockers.Services
@@ -15,11 +14,11 @@ namespace Courier_lockers.Services
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<List<edpmain>> getAllTest()
+        public async Task<IEnumerable<edpmain>> getAllTest()
         {
             try
             {
-                var st = await  _context.edpmains.Where(f => true).ToListAsync();
+                var st = await   _context.edpmains.Where(f => true).ToListAsync();
                 return st;
             }catch(Exception ex)
             {

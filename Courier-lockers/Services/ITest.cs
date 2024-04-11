@@ -5,6 +5,6 @@ namespace Courier_lockers.Services
 {
     public interface ITest
     {
-        Task<List<edpmain>> getAllTest();
+        Task<IEnumerable<edpmain>> getAllTest();
     }
 }
