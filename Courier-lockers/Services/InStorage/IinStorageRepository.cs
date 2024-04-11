@@ -2,5 +2,6 @@
 {
     public interface IInStorageRepository
     {
+        Task EntryStorage(string incode);
     }
 }
