@@ -42,6 +42,14 @@ namespace Courier_lockers.Services.Cell
 
         }
 
+        public async Task<int> GetCellCodeId()
+        {
+            var cell= await  _context.Cells.Where(f => f.CELL_TYPE == "Normal" && f.CELL_STATUS == "Nohave" && f.RUN_STATUS == "Enable" && f.SHELF_TYPE == "Sgoods")
+                .OrderBy(f => f.CELL_Z).ThenBy(f => f.CELL_X).ThenBy(f => f.CELL_Y).FirstOrDefaultAsync();
+
+            return cell != null ? cell.CELL_ID : 0;
+        }
+
         public async  Task<bool> UpTabaleXYZ()
         {
            var st= await _context.Cells.Where(f => true).ToListAsync();

@@ -55,6 +55,6 @@ namespace Schedule
         {
             return other?.JobId == JobId;
         }
-
+        #endregion
     }
 }

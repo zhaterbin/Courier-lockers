@@ -8,7 +8,7 @@ namespace Courier_lockers.Controllers
     [ApiController]
     [Route("api/Cell/[action]")]
     //[ApiExplorerSettings(GroupName = nameof(ApiVersion.Nole))]
-    public class CellController 
+    public class CellController : ControllerBase
     {
 
         private readonly ICellRepository _cellRepository;

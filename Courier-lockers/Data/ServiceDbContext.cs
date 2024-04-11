@@ -18,6 +18,7 @@ namespace Courier_lockers.Data
         public DbSet<edpmain> edpmains { get; set; }
         public DbSet<Cell> Cells { get; set; }
         public DbSet<OpearterIn> opearterIns { get; set; }
+        public DbSet<Storage> storages { get; set; }
 
         //表和视图
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,7 +27,10 @@ namespace Courier_lockers.Data
 
             modelBuilder.Entity<Cell>().HasKey(x => x.CELL_ID);
 
-            modelBuilder.Entity<OpearterIn>().HasKey(x => x.Storage_ID);
+            modelBuilder.Entity<OpearterIn>().HasKey(x => x.Operator_Id);
+
+            modelBuilder.Entity<Storage>().HasKey(x => x.STORAGE_ID);
+
         }
     }
 }
