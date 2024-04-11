@@ -11,12 +11,13 @@ namespace Courier_lockers.Data
             try
             {
                 this.Database.SetCommandTimeout(300);
-
+       
 
             }catch (Exception ex) { }
         }
         public DbSet<edpmain> edpmains { get; set; }
         public DbSet<Cell> Cells { get; set; }
+        public DbSet<OpearterIn> opearterIns { get; set; }
 
         //表和视图
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,6 +26,7 @@ namespace Courier_lockers.Data
 
             modelBuilder.Entity<Cell>().HasKey(x => x.CELL_ID);
 
+            modelBuilder.Entity<OpearterIn>().HasKey(x => x.Storage_ID);
         }
     }
 }

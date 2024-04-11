@@ -16,6 +16,11 @@ namespace Courier_lockers.Controllers
         {
             _cellRepository = cellRepository ?? throw new ArgumentNullException(nameof(_cellRepository)); ;
         }
+        /// <summary>
+        /// 获取当前排货架 
+        /// </summary>
+        /// <param name="cellRequst"></param>
+        /// <returns></returns>
         [HttpPost] 
         public async Task<ActionResult<CellReqReturn>>  GetCellArea(CellRequst cellRequst)
         {
