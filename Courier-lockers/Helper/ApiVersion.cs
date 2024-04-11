@@ -5,5 +5,6 @@
     /// </summary>
     public class ApiVersion
     {
+        public static string Nole; 
     }
 }

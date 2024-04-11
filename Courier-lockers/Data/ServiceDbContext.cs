@@ -16,10 +16,15 @@ namespace Courier_lockers.Data
             }catch (Exception ex) { }
         }
         public DbSet<edpmain> edpmains { get; set; }
+        public DbSet<Cell> Cells { get; set; }
+
         //表和视图
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<edpmain>().HasKey(x => x.Id);
+
+            modelBuilder.Entity<Cell>().HasKey(x => x.CELL_ID);
+
         }
     }
 }
