@@ -3,6 +3,24 @@
     public class Enum
     {
         /// <summary>
+        /// 快递箱大小
+        /// </summary>
+        public enum SHELF_TYPE
+        {
+            /// <summary>
+            /// 大
+            /// </summary>
+            Sgoods,
+            /// <summary>
+            /// 中
+            /// </summary>
+            Mgoods,
+            /// <summary>
+            /// 小
+            /// </summary>
+            Bgoods
+        }
+        /// <summary>
         /// 运行状态
         /// </summary>
         public enum RUN_STATUS_ENMU

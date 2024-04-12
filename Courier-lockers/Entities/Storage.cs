@@ -24,5 +24,7 @@ namespace Courier_lockers.Entities
         [Column("Storage_Name")]
         public string Storage_Name { get; set; }
 
+        [Column("InCode")]
+        public string InCode { get; set; }
     }
 }

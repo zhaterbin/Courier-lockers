@@ -4,11 +4,12 @@ using Courier_lockers.Repos.Cell;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using static Courier_lockers.Models.Enum;
 
 namespace Courier_lockers.Services.Cell
 {
-    public class CellPepository  :ICellRepository
+    public class CellPepository : ICellRepository
     {
         private readonly ServiceDbContext _context;
         public CellPepository(ServiceDbContext context)
@@ -52,17 +53,39 @@ namespace Courier_lockers.Services.Cell
             return cell != null ? cell.CELL_ID : 0;
         }
 
+        public async Task OutStatus(int cELL_ID)
+        {
+            var cell=await _context.Cells.Where(f=>f.CELL_ID==cELL_ID).FirstOrDefaultAsync();
+            if (cell != null)
+            {
+                cell.CELL_STATUS = RUN_STATUS_ENMU.Enable.ToString();
+                cell.CELL_TYPE = CELL_STATUS_ENUM.Nohave.ToString();
+                _context.Cells.Update(cell);
+
+                _context.SaveChanges();
+                
+            }
+          
+        }
+
         public async Task updateStatus(int ite)
         {
-            var cell=await _context.Cells.Where(f=>f.CELL_ID==ite).FirstOrDefaultAsync();
-            if (cell != null) 
+            try
             {
-                cell.RUN_STATUS = RUN_STATUS_ENMU.Run.ToString();
-                cell.CELL_STATUS = CELL_STATUS_ENUM.Full.ToString();
-                _context.Cells.Update(cell);
-                _context.SaveChanges();
+                var cell=await _context.Cells.Where(f=>f.CELL_ID==ite).FirstOrDefaultAsync();
+                if (cell != null) 
+                {
+                    cell.RUN_STATUS = RUN_STATUS_ENMU.Run.ToString();
+                    cell.CELL_STATUS = CELL_STATUS_ENUM.Full.ToString();
+                    _context.Cells.Update(cell);
+                    _context.SaveChanges();
+                }
             }
-        }
+            catch
+            {
+
+            }
+    }
 
         public async  Task<bool> UpTabaleXYZ()
         {

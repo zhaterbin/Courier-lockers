@@ -11,7 +11,7 @@
  Target Server Version : 80200 (8.2.0)
  File Encoding         : 65001
 
- Date: 11/04/2024 14:55:22
+ Date: 12/04/2024 15:53:54
 */
 
 SET NAMES utf8mb4;
@@ -3482,7 +3482,7 @@ INSERT INTO `cell` VALUES (5, 1, '01-01-05', '01-01-05', 'Normal', 'Nohave', 'En
 INSERT INTO `cell` VALUES (4, 1, '01-01-04', '01-01-04', 'Normal', 'Nohave', 'Enable', 'Sgoods', '01', '01', '04');
 INSERT INTO `cell` VALUES (3, 1, '01-01-03', '01-01-03', 'Normal', 'Nohave', 'Enable', 'Sgoods', '01', '01', '03');
 INSERT INTO `cell` VALUES (2, 1, '01-01-02', '01-01-02', 'Normal', 'Nohave', 'Enable', 'Sgoods', '01', '01', '02');
-INSERT INTO `cell` VALUES (1, 1, '01-01-01', '01-01-01', 'Normal', 'Nohave', 'Enable', 'Sgoods', '01', '01', '01');
+INSERT INTO `cell` VALUES (1, 1, '01-01-01', '01-01-01', 'Normal', 'Full', 'Run', 'Sgoods', '01', '01', '01');
 
 -- ----------------------------
 -- Table structure for edpmain
@@ -3503,10 +3503,10 @@ INSERT INTO `edpmain` VALUES (1, 1, '1', '1');
 INSERT INTO `edpmain` VALUES (2, 2, '2', '2');
 
 -- ----------------------------
--- Table structure for operaterin
+-- Table structure for opearterin
 -- ----------------------------
-DROP TABLE IF EXISTS `operaterin`;
-CREATE TABLE `operaterin`  (
+DROP TABLE IF EXISTS `opearterin`;
+CREATE TABLE `opearterin`  (
   `Operator_Id` int NOT NULL AUTO_INCREMENT,
   `Operator_Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `Price` decimal(10, 2) NULL DEFAULT NULL,
@@ -3514,13 +3514,15 @@ CREATE TABLE `operaterin`  (
   `Storage_Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `Date` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `InCode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`Operator_Id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`Operator_Id`) USING BTREE,
+  INDEX `Storage_ID`(`Storage_ID` ASC) USING BTREE,
+  CONSTRAINT `Storage_ID` FOREIGN KEY (`Storage_ID`) REFERENCES `storage` (`STORAGE_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of operaterin
+-- Records of opearterin
 -- ----------------------------
-INSERT INTO `operaterin` VALUES (1, 'S神', NULL, 1, 'WPF国手', NULL, NULL);
+INSERT INTO `opearterin` VALUES (2, 'S神', 1.00, 4, 'WPF国手', '2024/4/12 10:06:46', '123');
 
 -- ----------------------------
 -- Table structure for operaterout
@@ -3541,6 +3543,23 @@ CREATE TABLE `operaterout`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for priceruler
+-- ----------------------------
+DROP TABLE IF EXISTS `priceruler`;
+CREATE TABLE `priceruler`  (
+  `Price` decimal(10, 2) NULL DEFAULT NULL,
+  `StartDateTime` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `PriceRuler` decimal(10, 2) NULL DEFAULT NULL,
+  `EndDateTime` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `PriceId` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`PriceId`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of priceruler
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for storage
 -- ----------------------------
 DROP TABLE IF EXISTS `storage`;
@@ -3551,11 +3570,13 @@ CREATE TABLE `storage`  (
   `Bar_Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `Entry_Time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `Storage_Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `InCode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`STORAGE_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of storage
 -- ----------------------------
+INSERT INTO `storage` VALUES (4, 1, 'Test', 'Test', '2024/4/12 10:06:44', 'WPF国手', '123');
 
 SET FOREIGN_KEY_CHECKS = 1;
