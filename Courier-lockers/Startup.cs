@@ -107,6 +107,8 @@ namespace Courier_lockers
 
 
                 #region 注册第三方接口服务
+                services.AddHttpClient();
+                services.AddHttpClient<WPFHttpClient>();
                 #endregion  
             }
             catch (Exception ex)

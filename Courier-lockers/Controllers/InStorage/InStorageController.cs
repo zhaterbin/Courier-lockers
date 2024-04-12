@@ -1,4 +1,5 @@
 ﻿using Courier_lockers.Repos.Cell;
+using Courier_lockers.Repos.InStorage;
 using Courier_lockers.Services.Cell;
 using Courier_lockers.Services.InStorage;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,9 @@ namespace Courier_lockers.Controllers.InStorage
         /// <param name="incode"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<string>> EntercodeInStorage([FromBody]string incode)
+        public async Task<ActionResult<string>> EntercodeInStorage(ReqStorage reqStorage)
         {
-            await _inStorageRepository.EntryStorage(incode);
+            await _inStorageRepository.EntryStorage(reqStorage);
             return Ok();
         }
     }

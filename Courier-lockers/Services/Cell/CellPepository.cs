@@ -1,8 +1,10 @@
 ﻿using Courier_lockers.Data;
+using Courier_lockers.Entities;
 using Courier_lockers.Repos.Cell;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
+using static Courier_lockers.Models.Enum;
 
 namespace Courier_lockers.Services.Cell
 {
@@ -42,12 +44,24 @@ namespace Courier_lockers.Services.Cell
 
         }
 
-        public async Task<int> GetCellCodeId()
+        public async Task<int> GetCellCodeId(string idex, string Sheft)
         {
-            var cell= await  _context.Cells.Where(f => f.CELL_TYPE == "Normal" && f.CELL_STATUS == "Nohave" && f.RUN_STATUS == "Enable" && f.SHELF_TYPE == "Sgoods")
-                .OrderBy(f => f.CELL_Z).ThenBy(f => f.CELL_X).ThenBy(f => f.CELL_Y).FirstOrDefaultAsync();
+            var cell= await  _context.Cells.Where(f => f.CELL_TYPE == "Normal" && f.CELL_STATUS == "Nohave" && f.RUN_STATUS == "Enable" && f.SHELF_TYPE == Sheft && f.CELL_X==idex)
+                .OrderBy(f => f.CELL_Z).ThenBy(f => f.CELL_Y).FirstOrDefaultAsync();
 
             return cell != null ? cell.CELL_ID : 0;
+        }
+
+        public async Task updateStatus(int ite)
+        {
+            var cell=await _context.Cells.Where(f=>f.CELL_ID==ite).FirstOrDefaultAsync();
+            if (cell != null) 
+            {
+                cell.RUN_STATUS = RUN_STATUS_ENMU.Run.ToString();
+                cell.CELL_STATUS = CELL_STATUS_ENUM.Full.ToString();
+                _context.Cells.Update(cell);
+                _context.SaveChanges();
+            }
         }
 
         public async  Task<bool> UpTabaleXYZ()

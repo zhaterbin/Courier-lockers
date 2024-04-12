@@ -8,6 +8,7 @@ namespace Courier_lockers.Services.Cell
         ActionResult<CellReqReturn> GetCellArea(CellRequst cellRequst);
         Task<bool> UpTabaleXYZ();
 
-        Task<int> GetCellCodeId();
+        Task<int> GetCellCodeId(string idex,string Sheft);
+        Task updateStatus(int ite);
     }
 }

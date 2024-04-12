@@ -2,6 +2,6 @@
 {
     public class OtherServerModel
     {
-        public string MESServerUrl { get; set; }
+        public string WPFURL { get; set; }
     }
 }
