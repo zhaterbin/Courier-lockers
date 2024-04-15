@@ -14,13 +14,13 @@
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <StackPanel    VerticalAlignment="Bottom"   HorizontalAlignment="Center">
         <ToggleButton
             Padding="10"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
             Checked="ToggleButton_Checked"
             Content="Open/Close" Unchecked="ToggleButton_Unchecked"/>
-
+            <Button Content="Resize" Click="Button_Click"/>
+        </StackPanel>
         <UserControl
             Name="panel"
             Grid.Column="1"

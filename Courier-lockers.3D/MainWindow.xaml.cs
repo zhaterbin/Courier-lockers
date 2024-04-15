@@ -30,33 +30,24 @@ namespace Courier_lockers._3D
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
-
+            Closed += (s, e) => process.Close();
         }
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             HwndSource hwndSource = (HwndSource)PresentationSource.FromVisual(panel);
             var h = hwndSource.Handle;
-
-            IntPtr hwnd = h;
             process = new Process();
             process.StartInfo.FileName = "Courier Lockers.exe";
-
-            process.StartInfo.Arguments = "-parentHWND " + hwnd.ToString() + " " + Environment.CommandLine;
+            process.StartInfo.Arguments = "-parentHWND " + h.ToString() + " " + Environment.CommandLine;
             process.StartInfo.UseShellExecute = true;
             process.StartInfo.CreateNoWindow = true;
-
             process.Start();
-
-
-            EnumChildWindows(hwnd, WindowEnum, IntPtr.Zero);
-            panel1_Resize();
-            // tcpClient = new(new IPEndPoint(IPAddress.Loopback, 10010));
-            //tcpClient.Connect(new IPEndPoint(IPAddress.Loopback, 10001));
-
+            await Task.Delay(1000);
+            EnumChildWindows(h, WindowEnum, IntPtr.Zero);
         }
-        TcpClient tcpClient;
-        [DllImport("User32.dll")]
+
+        [DllImport("user32.dll")]
         static extern bool MoveWindow(IntPtr handle, int x, int y, int width, int height, bool redraw);
 
         internal delegate int WindowEnumProc(IntPtr hwnd, IntPtr lparam);
@@ -69,31 +60,25 @@ namespace Courier_lockers._3D
 
         private Process process;
         private IntPtr unityHWND = IntPtr.Zero;
-
         private const int WM_ACTIVATE = 0x0006;
         private readonly IntPtr WA_ACTIVE = new IntPtr(1);
         private readonly IntPtr WA_INACTIVE = new IntPtr(0);
-        private void ActivateUnityWindow()
-        {
-            SendMessage(unityHWND, WM_ACTIVATE, WA_ACTIVE, IntPtr.Zero);
-        }
 
-        private void DeactivateUnityWindow()
-        {
-            SendMessage(unityHWND, WM_ACTIVATE, WA_INACTIVE, IntPtr.Zero);
-        }
+        //private void ActivateUnityWindow()
+        //{
+        //    SendMessage(unityHWND, WM_ACTIVATE, WA_ACTIVE, IntPtr.Zero);
+        //}
+
+        //private void DeactivateUnityWindow()
+        //{
+        //    SendMessage(unityHWND, WM_ACTIVATE, WA_INACTIVE, IntPtr.Zero);
+        //}
 
         private int WindowEnum(IntPtr hwnd, IntPtr lparam)
         {
             unityHWND = hwnd;
-            ActivateUnityWindow();
+            MoveWindow(unityHWND, 0, 0, 500, 300, true);
             return 0;
-        }
-
-        private void panel1_Resize()
-        {
-            MoveWindow(unityHWND, 0, 0, Convert.ToInt32(panel.Width), Convert.ToInt32(panel.Height), true);
-            ActivateUnityWindow();
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
@@ -104,6 +89,7 @@ namespace Courier_lockers._3D
             socket.Send(buffer);
             socket.Dispose();
         }
+
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -112,5 +98,12 @@ namespace Courier_lockers._3D
             socket.Send(buffer);
             socket.Dispose();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MoveWindow(unityHWND, 60, 60, 300, 100, true);
+            //ActivateUnityWindow();
+        }
+        
     }
 }
