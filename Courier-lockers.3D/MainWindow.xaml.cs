@@ -38,7 +38,7 @@ namespace Courier_lockers._3D
             HwndSource hwndSource = (HwndSource)PresentationSource.FromVisual(panel);
             var h = hwndSource.Handle;
             process = new Process();
-            process.StartInfo.FileName = "Courier Lockers.exe";
+            process.StartInfo.FileName = "Repository.exe";
             process.StartInfo.Arguments = "-parentHWND " + h.ToString() + " " + Environment.CommandLine;
             process.StartInfo.UseShellExecute = true;
             process.StartInfo.CreateNoWindow = true;
@@ -63,16 +63,6 @@ namespace Courier_lockers._3D
         private const int WM_ACTIVATE = 0x0006;
         private readonly IntPtr WA_ACTIVE = new IntPtr(1);
         private readonly IntPtr WA_INACTIVE = new IntPtr(0);
-
-        //private void ActivateUnityWindow()
-        //{
-        //    SendMessage(unityHWND, WM_ACTIVATE, WA_ACTIVE, IntPtr.Zero);
-        //}
-
-        //private void DeactivateUnityWindow()
-        //{
-        //    SendMessage(unityHWND, WM_ACTIVATE, WA_INACTIVE, IntPtr.Zero);
-        //}
 
         private int WindowEnum(IntPtr hwnd, IntPtr lparam)
         {
