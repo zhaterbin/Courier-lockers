@@ -2,6 +2,12 @@
 {
     public class Enum
     {
+
+        public enum Cabinet
+        {
+            opening,
+            closing
+        }
         /// <summary>
         /// 快递箱大小
         /// </summary>

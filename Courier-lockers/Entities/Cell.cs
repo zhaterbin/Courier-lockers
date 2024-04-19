@@ -39,5 +39,8 @@ namespace Courier_lockers.Entities
 
         [Column("CELL_Z")]
         public string CELL_Z { get; set; }
+
+        [Column("Cabinet")]
+        public string Cabinet { get; set; }
     }
 }

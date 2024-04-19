@@ -1,11 +1,14 @@
 ﻿using Courier_lockers.Data;
 using Courier_lockers.Entities;
+using Courier_lockers.Helper;
 using Courier_lockers.Repos;
+using Courier_lockers.Repos.Cell;
 using Courier_lockers.Repos.InStorage;
 using Courier_lockers.Services.Cell;
 using Microsoft.EntityFrameworkCore;
 using ServiceStack;
 using System.Text.RegularExpressions;
+using static ServiceStack.Script.Lisp;
 
 namespace Courier_lockers.Services.InStorage
 {
@@ -14,10 +17,12 @@ namespace Courier_lockers.Services.InStorage
         readonly string pattern = @"^\d{4}$";
         private readonly ServiceDbContext _context;
         private readonly ICellRepository _cellRepository;
-        public InStorageRepository(ServiceDbContext context, ICellRepository cellRepository)
+        private readonly IWPFHttpClient _WpfHttp;
+        public InStorageRepository(ServiceDbContext context, ICellRepository cellRepository,IWPFHttpClient wPFHttpClient)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _cellRepository = cellRepository ?? throw new ArgumentNullException(nameof(cellRepository));
+            _WpfHttp = wPFHttpClient ?? throw new ArgumentNullException(nameof(cellRepository));
         }
 
         public async Task<Result> EntryStorage(ReqStorage reqStorage)
@@ -41,7 +46,7 @@ namespace Courier_lockers.Services.InStorage
                     result.Messsage = "此排没有空的快递架了";
                     return result;
                 }
-                var storage=_context.storages.Where(f => f.InCode == reqStorage.incode).FirstOrDefaultAsync();
+                var storage=await _context.storages.Where(f => f.InCode == reqStorage.incode).FirstOrDefaultAsync();
                 if (storage != null)
                 {
                     result.Success = false;
@@ -70,7 +75,26 @@ namespace Courier_lockers.Services.InStorage
                 await _cellRepository.updateStatus(ite);
                 result.Messsage = "送入快递柜成功";
                 db.Commit();
-            }catch(Exception ex)
+                //完成后下放给3d动作 快递柜打开
+               var cellcode=_context.Cells.SingleOrDefault(f => f.CELL_ID == ite);
+                //if (cell_code != null)
+                //{
+                //    RequestUnity requestUnity = new RequestUnity
+                //    {
+                //        code = cell_code.CELL_CODE,
+                //        IsOpening = cell_code.Cabinet
+                //    };
+                //    var s=_WpfHttp.PostData("Wpf", requestUnity);
+                //}
+                result.Success = true;
+                result.Messsage = "送入快递柜成功";
+                result.data = new DataBase
+                {
+                    cell_code= cellcode.CELL_CODE,
+                    Isopening= "closing"
+                };
+            }
+            catch (Exception ex)
             {
                 bselt= true;
                 result.Messsage = "送入快递柜失败";
@@ -82,11 +106,11 @@ namespace Courier_lockers.Services.InStorage
                 {
                     db.Rollback();
                 }
-                result.Success = true;
-                result.Messsage = "送入快递柜成功";
+
             }
             return result;
         }
+
         public async  Task deStorage(Storage storage)
         {
             var opearterIn=await _context.opearterIns.Where(f => f.InCode == storage.InCode).FirstOrDefaultAsync();

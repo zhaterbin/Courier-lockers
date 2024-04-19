@@ -44,12 +44,26 @@ namespace Courier_lockers.Services.Cell
             return cellReqReturn;
 
         }
-
+        /// <summary>
+        /// 别动，我以后优化
+        /// </summary>
+        /// <param name="idex"></param>
+        /// <param name="Sheft"></param>
+        /// <returns></returns>
         public async Task<int> GetCellCodeId(string idex, string Sheft)
         {
-            var cell= await  _context.Cells.Where(f => f.CELL_TYPE == "Normal" && f.CELL_STATUS == "Nohave" && f.RUN_STATUS == "Enable" && f.SHELF_TYPE == Sheft && f.CELL_X==idex)
+
+            var cell = await _context.Cells.Where(f => f.CELL_TYPE == "Normal" && f.CELL_STATUS == "Nohave" && f.RUN_STATUS == "Enable" && f.SHELF_TYPE == Sheft
+            && f.CELL_X == idex && f.Cabinet == "closing")
                 .OrderBy(f => f.CELL_Z).ThenBy(f => f.CELL_Y).FirstOrDefaultAsync();
 
+            if (cell == null)
+            {
+                var cellStation = await _context.Cells.Where(f => f.CELL_TYPE == "Normal" && f.CELL_STATUS == "Nohave" && f.RUN_STATUS == "Enable" && f.SHELF_TYPE == Sheft
+                                    && f.CELL_X == idex && f.Cabinet == Cabinet.opening.ToString())
+                                        .OrderBy(f => f.CELL_Z).ThenBy(f => f.CELL_Y).FirstOrDefaultAsync();
+                return cellStation != null ? cellStation.CELL_ID : 0;
+            }
             return cell != null ? cell.CELL_ID : 0;
         }
 
@@ -77,6 +91,7 @@ namespace Courier_lockers.Services.Cell
                 {
                     cell.RUN_STATUS = RUN_STATUS_ENMU.Run.ToString();
                     cell.CELL_STATUS = CELL_STATUS_ENUM.Full.ToString();
+                    cell.Cabinet=Cabinet.opening.ToString();
                     _context.Cells.Update(cell);
                     _context.SaveChanges();
                 }

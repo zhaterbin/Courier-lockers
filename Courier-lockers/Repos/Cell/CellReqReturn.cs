@@ -18,4 +18,10 @@
         public string Cell_Z { get; set; }
 
     }
+
+    public class RequestUnity
+    {
+        public string code { get; set; }
+        public string IsOpening { get; set; }
+    }
 }

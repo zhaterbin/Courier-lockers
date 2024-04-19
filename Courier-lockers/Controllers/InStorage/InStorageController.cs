@@ -36,5 +36,26 @@ namespace Courier_lockers.Controllers.InStorage
             return Ok(s);
 
         }
+        /// <summary>
+        /// 关门
+        /// </summary>
+        /// <param name="dataBase"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult<Result>>  CloseCabinet(DataBase dataBase)
+        {
+            return Ok();
+        }
+
+        /// <summary>
+        /// 开门
+        /// </summary>
+        /// <param name="dataBase"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult<Result>> OpenCabinet(DataBase dataBase)
+        {
+            return Ok();
+        }
     }
 }

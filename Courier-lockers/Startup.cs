@@ -84,7 +84,7 @@ namespace Courier_lockers
                 //数据库读写连接  
                 services.AddDbContext<ServiceDbContext>(option =>
                 {
-                    option.UseMySql("server=127.0.0.1;port=3306;database=courier-lockers;user=root;password=123456",
+                    option.UseMySql("server=127.0.0.1;port=3306;database=courier-lockers;user=root;password=Hr123456",
                         //看你版本设置
                 new MySqlServerVersion(new Version(8, 2, 0)));
                 });

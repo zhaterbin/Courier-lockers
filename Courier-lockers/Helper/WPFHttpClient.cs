@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Courier_lockers.Helper
 {
-    public class WPFHttpClient
+    public class WPFHttpClient : IWPFHttpClient
     {
         public HttpClient _client { get; private set; }
 
